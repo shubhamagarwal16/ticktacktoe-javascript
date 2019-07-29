@@ -1,0 +1,24 @@
+{
+  "name": "ticktacktoe-javascript",
+  "version": "1.0.0",
+  "description": "simple tick-tack-game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/shubhamagarwal16/ticktacktoe-javascript.git"
+  },
+  "keywords": [
+    "javascript",
+    "nodejs",
+    "ticktacktoe"
+  ],
+  "author": "SHUBHAM AGARWAL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/shubhamagarwal16/ticktacktoe-javascript/issues"
+  },
+  "homepage": "https://gitlab.com/shubhamagarwal16/ticktacktoe-javascript#readme"
+}
