@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://gitlab.com/shubhamagarwal16/ticktacktoe-javascript/issues"
   },
-  "homepage": "https://gitlab.com/shubhamagarwal16/ticktacktoe-javascript#readme"
+  "homepage": "https://gitlab.com/shubhamagarwal16/ticktacktoe-javascript#readme",
+  "dependencies": {}
 }
