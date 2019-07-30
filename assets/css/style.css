@@ -1,3 +1,6 @@
+body {
+    counter-reset: cellNo;
+  }
 .toe-Box{
     width: 50px;
     height: 150px;
@@ -6,6 +9,15 @@
     text-align: center;
     padding-top: 3%;
     font-weight: 500;
+}
+.toe-Box::after{
+    counter-increment: cellNo;
+    content: counter(cellNo);
+    font-size: 15px;
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    color: black;
 }
 .ticktaktoe .row{
     border-bottom: 4px solid #000;

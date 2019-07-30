@@ -1,5 +1,9 @@
 let player1 = "";
 let player2 = "";
+let scores = {
+    player1Score: 0,
+    player2Score: 0    
+};
 let turn = 1;
 const winCases = {
     '00': [['01', '02'], ['10', '20'], ['11', '22']],
@@ -13,8 +17,8 @@ const winCases = {
     '22': [['20', '21'], ['02', '12'], ['00', '11']]
 };
 
-// setPlayers();
-createLayout();
+setPlayers();
+// createLayout();
 
 
 // ==================== ADD PLAYER ==============================
@@ -26,6 +30,7 @@ function setPlayers() {
         $("#setPlayerModal").modal("hide");
         createLayout();
         scoreDashboard();
+        document.getElementById("current-turn").innerText = player1;
         return;
     }
 
@@ -50,6 +55,9 @@ function init(e) {
 
     if (player1 && player2) {
         setPlayers();
+        document.addEventListener("keyup", (event) => {
+            if((event.keyCode > 48 && event.keyCode < 58) || (event.keyCode > 96 && event.keyCode < 106)) addDataToBlock('', event.keyCode);
+        })
     }
 }
 // ===================================== CREATING LAYOUT==================================
@@ -62,6 +70,7 @@ function createLayout() {
         for (j in [1, 2, 3]) {
             let temp2 = document.createElement("div");
             temp2.classList.add('col', 'toe-Box');
+            temp2.style.pageBreakAfter.content = "red"
             temp2.setAttribute("id", `rowCol${i}${j}`);
             // temp2.appendChild(document.createTextNode(`${i}${j}`));
             temp2.addEventListener('click', addDataToBlock);
@@ -78,21 +87,43 @@ function createLayout() {
     }
     // document.querySelector(".ticktaktoe").innerHTML = layout;
 }
+function getCellId(code){
+    let cellNo = 0;
+    if(event.keyCode > 48 && event.keyCode < 58){
+        cellNo = event.keyCode - 48;
+    }
+    else if(event.keyCode > 96 && event.keyCode < 106){
+        cellNo = event.keyCode - 96;
+    }
+    console.log(cellNo, ['00','01','02','10', '11','12','20','21','22'][cellNo - 1])
+    return ['00','01','02','10', '11','12','20','21','22'][cellNo - 1];
+}
 
-function addDataToBlock(event) {
-    if (event.target.innerText) return;
+function addDataToBlock(event, keyCode = "") {
+    let id = "";
+    let innerText = "";
+    if(keyCode){
+        id = "rowCol" + getCellId(keyCode);
+        innerText = document.getElementById(id).innerText;
+    }
+    else {
+        innerText = event.target.innerText;
+        id= event.target.id;
+    }
+    if (innerText) return;
 
     let type = "O";
     if (turn === 1) type = "X";
 
-    let currentElement = document.getElementById(event.target.id);
+    let currentElement = document.getElementById(id);
     currentElement.innerText = type;
     currentElement.style.color = turn === 1 ? "red" : "black";
     currentElement.removeEventListener("click", addDataToBlock);
 
     turn = turn === 1 ? 2 : 1;
+    document.getElementById("current-turn").innerText = turn === 1 ? player1 : player2;
 
-    checkForMatch(event.target.id);
+    checkForMatch(id);
 }
 
 function checkForMatch(id) {
@@ -126,5 +157,6 @@ function createMatch(id, arr) {
 }
 
 function resetMatch(){
-// console.log("==============")
+    // alert(turn);
+    // turn === 1 ? 
 }
