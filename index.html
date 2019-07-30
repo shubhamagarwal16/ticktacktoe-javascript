@@ -13,25 +13,30 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mt-5 main-content">
         <h4 class="text-center">TICK TACK TOE GAME</h4>
-        <div class="ticktaktoe mt-3">
+        <div id="mainStartBtn" class="text-center">
+            <button data-toggle="modal" data-target="#setPlayerModal" class="btn btn-primary mt-5 btn-lg">START</button>
+        </div>
+        <div id="scoreDashboard" class="dashboard mb-4">
             <div class="row">
-                <div class="col toe-Box"></div>
-                <div class="col toe-Box"></div>
-                <div class="col toe-Box"></div>
-            </div>
-            <div class="row">
-                <div class="col toe-Box"></div>
-                <div class="col toe-Box"></div>
-                <div class="col toe-Box"></div>
-            </div>
-            <div class="row">
-                <div class="col toe-Box"></div>
-                <div class="col toe-Box"></div>
-                <div class="col toe-Box"></div>
+                <div class="col text-center">
+                    Player 1 - 
+                    <b id="player1Name" ></b> <br>
+                    Score - <b id="player1Score" ></b>
+                </div>
+                <div class="col text-center">
+                    Current Turn - 
+                    <b id="current-turn"></b>
+                </div>
+                <div class="col text-left">
+                    Player 2 - 
+                    <b id="player2Name"></b> <br>
+                    Score - <b id="player2Score" ></b>
+                </div>
             </div>
         </div>
+        <div class="ticktaktoe mt-5"></div>
     </div>
 
     <!-- ==================== SET PLAYER MODAL ============================== -->
@@ -40,23 +45,32 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title text-center" id="exampleModalLabel"><b>START</b></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label for="player1">Player 1</label>
+                            <input type="text" id="player1" name="player1" value="Shubham" placeholder="Enter Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="player2">Player 2</label>
+                            <input type="text" id="player2" name="player2" value="Anshul" placeholder="Enter Name" class="form-control">
+                        </div>
+                        <button onclick="init(event)" class="btn btn-success mt-3 btn-block text-center">Start</button>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ======================== SCRIPTS =================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
     <script src="./assets/js/main.js"></script>
 </body>
