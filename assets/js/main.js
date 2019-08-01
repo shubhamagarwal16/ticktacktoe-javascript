@@ -5,6 +5,7 @@ let scores = {
     player2Score: 0    
 };
 let turn = 1;
+let totalChancesPlayed = 0;
 const winCases = {
     '00': [['01', '02'], ['10', '20'], ['11', '22']],
     '01': [['00', '02'], ['11', '21']],
@@ -42,8 +43,10 @@ function setPlayers() {
 //========================= DASHBOARD ===============================
 function scoreDashboard() {
     document.getElementById("player1Name").innerText = player1;
+    document.getElementById("player1Score").innerText = scores.player1Score;
+    
     document.getElementById("player2Name").innerText = player2;
-
+    document.getElementById("player2Score").innerText = scores.player2Score;
 }
 
 // ============================= INIT ===========================================
@@ -62,6 +65,8 @@ function init(e) {
 }
 // ===================================== CREATING LAYOUT==================================
 function createLayout() {
+    document.querySelector(".ticktaktoe").innerHTML = "";
+
     for (i in [1, 2, 3]) {
         temp = document.createElement("div");
         temp.className = "row";
@@ -122,11 +127,16 @@ function addDataToBlock(event, keyCode = "") {
 
     turn = turn === 1 ? 2 : 1;
     document.getElementById("current-turn").innerText = turn === 1 ? player1 : player2;
+    totalChancesPlayed += 1;
+    console.log({totalChancesPlayed});
 
-    checkForMatch(id);
+    // ================ Minimum 5 chances should be played for winning or check to win
+    if(totalChancesPlayed === 9) resetMatch(false);
+    if(totalChancesPlayed > 4) checkForMatch(id);
 }
 
 function checkForMatch(id) {
+    console.log("checkForMatch");
     let currentValue = document.getElementById(id).innerText;
     id = id.slice(6);
 
@@ -153,10 +163,26 @@ function createMatch(id, arr) {
     document.getElementById(`rowCol${arr[1]}`).style.backgroundColor = "yellow";
 
     // alert( (turn ===1 ? player1 : player2) + " won!!");
-    resetMatch();
+    resetMatch(true);
 }
 
-function resetMatch(){
-    // alert(turn);
-    // turn === 1 ? 
+function resetMatch(won){
+    totalChancesPlayed = 0;
+    document.getElementById("current-turn").innerText = player1;
+    
+    if(won) {
+        // Add winning score
+        if(turn === 2) scores.player1Score += 1;
+        else scores.player2Score += 1;
+        scoreDashboard();
+    }
+    else{
+        alert("Its a tie");
+    }
+
+    turn = 1;
+        
+    setTimeout(() => {
+        createLayout();
+    }, 2000);
 }
