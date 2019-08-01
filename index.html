@@ -1,78 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Tick Tack Toe</title>
 
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="container mt-5 main-content">
-        <h4 class="text-center">TICK TACK TOE GAME</h4>
-        <div id="mainStartBtn" class="text-center">
-            <button data-toggle="modal" data-target="#setPlayerModal" class="btn btn-primary mt-5 btn-lg">START</button>
+      <h4 class="text-center">TICK TACK TOE GAME</h4>
+      <div id="mainStartBtn" class="text-center">
+        <button
+          data-toggle="modal"
+          data-target="#setPlayerModal"
+          class="btn btn-primary mt-5 btn-lg"
+        >
+          START
+        </button>
+      </div>
+      <div id="scoreDashboard" class="dashboard mb-4">
+        <div class="row">
+          <div class="col text-right">
+            Player 1 <span class="text-danger"> (X)</span> -
+            <b id="player1Name" class="badge badge-primary"></b> <br />
+            Score - <b id="player1Score"></b>
+          </div>
+          <div class="col text-center">
+            Current Turn -
+            <b id="current-turn" class="badge badge-success"></b>
+          </div>
+          <div class="col text-left">
+            Player 2 (0) -
+            <b id="player2Name" class="badge badge-primary"></b> <br />
+            Score - <b id="player2Score"></b>
+          </div>
         </div>
-        <div id="scoreDashboard" class="dashboard mb-4">
-            <div class="row">
-                <div class="col text-right">
-                    Player 1 <span class="text-danger"> (X)</span> - 
-                    <b id="player1Name" class="badge badge-primary" ></b> <br>
-                    Score - <b id="player1Score" ></b>
-                </div>
-                <div class="col text-center">
-                    Current Turn - 
-                    <b id="current-turn" class="badge badge-success"></b>
-                </div>
-                <div class="col text-left">
-                    Player 2 (0) - 
-                    <b id="player2Name" class="badge badge-primary"></b> <br>
-                    Score - <b id="player2Score" ></b>
-                </div>
-            </div>
-        </div>
-        <div class="ticktaktoe mt-5 mb-5"></div>
+      </div>
+      <div class="ticktaktoe mt-5 mb-5"></div>
     </div>
 
     <!-- ==================== SET PLAYER MODAL ============================== -->
-    <div class="modal fade" id="setPlayerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-center" id="exampleModalLabel"><b>START</b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="">
-                        <div class="form-group">
-                            <label for="player1">Player 1</label>
-                            <input type="text" id="player1" name="player1" value="Shubham" placeholder="Enter Name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="player2">Player 2</label>
-                            <input type="text" id="player2" name="player2" value="Anshul" placeholder="Enter Name" class="form-control">
-                        </div>
-                        <button onclick="init(event)" class="btn btn-success mt-3 btn-block text-center">Start</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="setPlayerModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center" id="exampleModalLabel">
+              <b>START</b>
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="">
+              <div class="form-group">
+                <label for="player1">Player 1</label>
+                <input
+                  type="text"
+                  id="player1"
+                  name="player1"
+                  value="Shubham"
+                  placeholder="Enter Name"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="player2">Player 2</label>
+                <input
+                  type="text"
+                  id="player2"
+                  name="player2"
+                  value="Anshul"
+                  placeholder="Enter Name"
+                  class="form-control"
+                />
+              </div>
+              <button
+                onclick="init(event)"
+                class="btn btn-success mt-3 btn-block text-center"
+              >
+                Start
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer"></div>
         </div>
+      </div>
     </div>
 
     <!-- ======================== SCRIPTS =================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
     <script src="./assets/js/main.js"></script>
-</body>
-
+  </body>
 </html>
