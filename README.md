@@ -1,5 +1,8 @@
 # ticktacktoe-javascript
 
+# Demo URL
+ https://ticktacktoe-javascript.vercel.app/
+
 ## Project Layout
 - Used vanilla javascript for all functionality
 - Used jQuery only for bootstrap modals (popups)
